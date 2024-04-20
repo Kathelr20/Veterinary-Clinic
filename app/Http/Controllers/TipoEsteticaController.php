@@ -34,7 +34,7 @@ class TipoEsteticaController extends Controller
         $tipo_estetica->nombre = $request->nombre;
     
         $tipo_estetica->save();
-        return Redirect::route('tipo_estetica.index');
+        return Redirect::route('tipo_estetica.index')->with('success', 'Tipo de mascota creado exitosamente');
         }
 
     /**
@@ -63,7 +63,7 @@ class TipoEsteticaController extends Controller
         $tipo_estetica->nombre = $request->nombre;
 
         $tipo_estetica->save();
-        return Redirect::route('tipo_estetica.index');
+        return Redirect::route('tipo_estetica.index')->with('success', 'Tipo de mascota actualizado exitosamente');
     }
 
     /**

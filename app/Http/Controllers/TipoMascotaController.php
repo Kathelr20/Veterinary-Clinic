@@ -34,7 +34,7 @@ class TipoMascotaController extends Controller
         $tipo_mascota->mascota = $request->mascota;
     
         $tipo_mascota->save();
-        return Redirect::route('tipo_mascota.index');
+        return Redirect::route('tipo_mascota.index')->with('success', 'Tipo de mascota creado exitosamente');
     }
 
     /**
@@ -65,7 +65,7 @@ class TipoMascotaController extends Controller
         $mascota->mascota = $request->mascota;
 
         $mascota->save();
-        return Redirect::route('tipo_mascota.index');
+        return Redirect::route('tipo_mascota.index')->with('success', 'Tipo de mascota actualizado exitosamente');
 
     }
 

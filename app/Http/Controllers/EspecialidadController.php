@@ -34,7 +34,7 @@ class EspecialidadController extends Controller
         $especialidad->especialidad = $request->especialidad;
 
         $especialidad->save();
-        return Redirect::route('especialidad.index');
+        return Redirect::route('especialidad.index')->with('success', 'Especialidad creada exitosamente');
     }
 
     /**
@@ -63,7 +63,7 @@ class EspecialidadController extends Controller
         $especialidad->especialidad = $request->especialidad;
 
         $especialidad->save();
-        return Redirect::route('especialidad.index');
+        return Redirect::route('especialidad.index')->with('success', 'Especialidad actualizada exitosamente');
     }
 
     /**
@@ -73,6 +73,6 @@ class EspecialidadController extends Controller
     {
         $especialidad = Especialidad::findOrFail($id);
         $especialidad->delete();
-        return redirect()->route('especialidad.index')->with('success', 'Tipo de mascota eliminado exitosamente');
+        return redirect()->route('especialidad.index')->with('success', 'Especialidad eliminada exitosamente');
     }
 }

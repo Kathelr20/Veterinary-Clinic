@@ -91,6 +91,21 @@
             <a href="{{ route('especialidad.create') }}" class="btn btn-primary">Nueva Especialidad</a>
         </div>
 
+        <!-- Mostrar mensajes de éxito o error -->
+        <div class="container mt-4">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+        </div>
+
         <!-- Contenido de la sección de Especialidades -->
         <div class="row">
             @foreach ($especialidad as $espe)
@@ -105,7 +120,7 @@
                             <form action="{{ route('especialidad.destroy', ['especialidad' => $espe->id]) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar esta especialidad?')">Eliminar</button>
                             </form>
                         </div>
                     </div>
@@ -119,3 +134,4 @@
 </body>
 
 </html>
+

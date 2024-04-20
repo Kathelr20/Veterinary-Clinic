@@ -40,16 +40,6 @@
             color: #d3d3d3; /* Color al pasar el cursor sobre los botones */
         }
 
-        /* Encabezado "Usuarios" con posición fija */
-        .sticky-header {
-            position: sticky;
-            top: 56px; /* Ajusta este valor según la altura de la barra superior */
-            z-index: 999;
-            background-color: white; /* Fondo blanco para distinguirlo */
-            padding: 10px 15px;
-            border-bottom: 1px solid #ddd; /* Línea inferior para separar el encabezado */
-        }
-
         /* Estilo para las tarjetas */
         .card {
             border-radius: 8px; /* Borde redondeado */
@@ -75,7 +65,7 @@
                 <form method="POST" action="{{ route('principal_tec') }}">
                     @csrf
                     <button type="submit" class="btn btn-link">
-                    🏡INICIO🏡 <!-- En lugar del ícono de Font Awesome, coloca el texto "Inicio" -->
+                        🏡INICIO🏡 <!-- En lugar del ícono de Font Awesome, coloca el texto "Inicio" -->
                     </button>
                 </form>
             </div>
@@ -86,6 +76,21 @@
     <div class="container mt-5 sticky-header">
         <h1>Usuarios</h1>
         <a href="{{ route('register.post') }}" class="btn btn-primary">Registrar Nuevo Usuario</a>
+    </div>
+
+    <!-- Mostrar mensajes de éxito o error -->
+    <div class="container mt-4">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
     </div>
 
     <!-- Contenido de la vista -->
@@ -101,7 +106,7 @@
                             <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar a este usuario?')">Eliminar</button>
                             </form>
                         </div>
                     </div>

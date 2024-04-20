@@ -103,6 +103,21 @@
             <i class="fas fa-plus"></i> Nuevo Personal
         </a>
 
+        <!-- Mostrar mensaje de éxito o error -->
+        <div class="container mt-4">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+        </div>
+
         <div class="row">
             @foreach ($personal as $persona)
                 <div class="col-md-4">
@@ -116,14 +131,13 @@
                             <p><strong>Usuario:</strong> {{ $persona->user->name }}</p>
                             <p><strong>Especialidad:</strong> {{ $persona->especialidad->especialidad }}</p>
                             <!-- Botones de acción -->
-                                <form action="{{ route('personal.destroy', ['personal' => $persona->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash-alt"></i> Eliminar
-                                    </button>
-                                </form>
-                            </div>
+                            <form action="{{ route('personal.destroy', ['personal' => $persona->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar este registro?')">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -136,4 +150,5 @@
 </body>
 
 </html>
+
 
